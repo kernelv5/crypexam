@@ -1,0 +1,13 @@
+This script testing into VM environment, please update the inventory_file
+ansible version 2.0 or later 
+
+ansible-playbook -i inventory_file --become playbook.yml
+or for specific group from inventory 
+ansible-playbook -i inventory_file -l --become linux_hosts playbook.yml
+
+
+PermitRootLogin no: Security Best Practices 
+AllowUsers : Keep the security one step narrow. Server might have some additionuser system user, this will specific user to connect
+
+Port 2222: This line changes the default SSH port to 2222, Security Best Practices
+PermitEmptyPasswords no: Security Best practices , improving security 

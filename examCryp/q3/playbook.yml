@@ -1,0 +1,7 @@
+---
+- name: Configore sshd_config
+  hosts: linux_hosts
+  become: true
+
+  roles:
+    - sshd_config

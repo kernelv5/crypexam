@@ -1,0 +1,9 @@
+k get storageclass
+name need to adjust in q2.yaml file line 47 storageClassName. This templete testing under minikube env 
+
+kubectl create ns four-oranges
+kubectl apply -f q2.yaml
+kubectl get pods -o json | jq -r '.items[].spec.containers[].name'
+
+kubectl exec -it six-apples-0 -c three-pears -- sh -c 'echo "one-watermelon with three-pears" > /nginx-index/index.html'
+kubectl exec -it six-apples-0 -c two-bananas -- sh -c 'cat /usr/share/nginx/html/index.html'

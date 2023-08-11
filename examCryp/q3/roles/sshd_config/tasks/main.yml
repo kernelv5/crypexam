@@ -1,0 +1,19 @@
+---
+- name: Exam provided sshd configuration
+  blockinfile:
+    path: /etc/ssh/sshd_config
+    marker: "# {mark} Crypto Security Team - DO NOT EDIT"
+    insertafter: ".*PasswordAuthentication yes"
+    content: |
+      # Disable root login
+      PermitRootLogin no
+
+      # Allow only approved users to login
+      AllowUsers karim kingli
+
+      # Set SSH port
+      Port 2222
+
+      PermitEmptyPasswords no
+  notify: Restart sshd
+  become: yes

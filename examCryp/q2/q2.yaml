@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: six-apples
+  namespace: four-oranges
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: six-apples
+  template:
+    metadata:
+      labels:
+        app: six-apples
+    spec:
+      containers:
+      - name: two-bananas
+        image: nginx
+        resources:
+          requests:
+            cpu: "0.1"
+            memory: "128Mi"
+          limits:
+            cpu: "0.2"
+            memory: "256Mi"
+        volumeMounts:
+        - name: pv-volume
+          mountPath: /usr/share/nginx/html
+      - name: three-pears
+        image: busybox
+        command: ["sleep", "infinity"]
+        resources:
+          requests:
+            cpu: "0.1"
+            memory: "128Mi"
+          limits:
+            cpu: "0.2"
+            memory: "256Mi"
+        volumeMounts:  # Mount the same volume to the busybox container
+        - name: pv-volume
+          mountPath: /nginx-index
+  volumeClaimTemplates:
+  - metadata:
+      name: pv-volume
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: standard
+      resources:
+        requests:
+          storage: 2Gi
