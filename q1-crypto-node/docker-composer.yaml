@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "26656-26657:26656-26657"
+      - "26656:26656"
     volumes:
       - config-volume:/chain_main/config
       - db-volume:/chain_main/data
