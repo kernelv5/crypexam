@@ -1,6 +1,7 @@
 # Pre-requisits
-  docker volume create config-volume
-  docker volume create db-volume
+
+docker volume create config-volume <br>
+docker volume create db-volume
 
 # Start Application 
 docker-compose -f docker-composer.yaml up --build -d
